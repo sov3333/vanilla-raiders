@@ -49,3 +49,25 @@ Prompts:
 - [A **Swordsman** character in an RPG, by Studio Ghibli, matte painting trending on artstation HQ](https://i.imgur.com/Bix5oBT.png)
 - [An **Archer** character with a Bow in an RPG, by Studio Ghibli, matte painting trending on artstation HQ](https://i.imgur.com/LZRkouX.png)
 - [Full-body portrait of a **Wizard** character with a Wand in an RPG, by Studio Ghibli, matte painting trending on artstation HQ](https://i.imgur.com/L7IA4pp.png)
+
+## dotenv
+
+https://www.npmjs.com/package/dotenv
+
+.env file format:
+```
+QUICKNODE_API="YOUR_API_KEY_HERE"
+PRIVATE_KEY="YOUR_PRIVATE_KEY_HERE"
+```
+
+**IMPORTANT**: Add `.env` to your `.gitignore` file!!
+
+To be safe, use a fresh metamask account with no real-world assets.
+
+For Ethereum network node, use [Quicknode](https://www.quicknode.com/endpoints), Infura, or Alchemy etc.
+
+## Deploying on Goerli testnet
+
+```
+npx hardhat run scripts/deploy.js --network goerli
+```
