@@ -40,3 +40,12 @@ Then run:
 ```
 npx hardhat run scripts/deploy.js
 ```
+
+## Characters
+
+Characters created with [Dreamstudio](https://beta.dreamstudio.ai/dream).
+
+Prompts:
+- [A **Swordsman** character in an RPG, by Studio Ghibli, matte painting trending on artstation HQ](https://i.imgur.com/Bix5oBT.png)
+- [An **Archer** character with a Bow in an RPG, by Studio Ghibli, matte painting trending on artstation HQ](https://i.imgur.com/LZRkouX.png)
+- [Full-body portrait of a **Wizard** character with a Wand in an RPG, by Studio Ghibli, matte painting trending on artstation HQ](https://i.imgur.com/L7IA4pp.png)
