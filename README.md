@@ -71,3 +71,8 @@ For Ethereum network node, use [Quicknode](https://www.quicknode.com/endpoints),
 ```
 npx hardhat run scripts/deploy.js --network goerli
 ```
+
+## Deploying on Hardhat testnet - will show `console.log`
+```
+npx hardhat run scripts/run.js
+```
