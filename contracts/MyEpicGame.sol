@@ -179,9 +179,17 @@ contract MyEpicGame is ERC721 {
     // Allow player to attack boss.
     if (bigBoss.hp < player.attackDamage) {
       bigBoss.hp = 0;
+    // } else {
+    //   bigBoss.hp = bigBoss.hp - player.attackDamage;
+    // }
     } else {
-      bigBoss.hp = bigBoss.hp - player.attackDamage;
-    }
+      if (randomInt(10) > 5) {        // by passing 10 as the mod, we elect to only grab the last digit (0-9) of the hash!
+        bigBoss.hp = bigBoss.hp - player.attackDamage;
+        console.log("%s attacked boss. New boss hp: %s", player.name, bigBoss.hp);
+      } else {
+        console.log("%s missed!\n", player.name);
+      }
+    }    
 
     // Allow boss to attack player.
     if (player.hp < bigBoss.attackDamage) {
@@ -193,6 +201,15 @@ contract MyEpicGame is ERC721 {
     // Console for ease.
     console.log("Player attacked boss. New boss hp: %s", bigBoss.hp);
     console.log("Boss attacked player. New player hp: %s\n", player.hp);
+  }
+
+  uint randNonce = 0; // this is used to help ensure that the algorithm has different inputs every time
+
+  function randomInt(uint _modulus) internal returns(uint) {
+    randNonce++;                                                     // increase nonce
+    return uint(keccak256(abi.encodePacked(block.timestamp,          // 'now' has been deprecated, use 'block.timestamp' instead
+                                          msg.sender,               // your address
+                                          randNonce))) % _modulus;  // modulo using the _modulus argument
   }
 
 }
