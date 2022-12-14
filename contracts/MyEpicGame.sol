@@ -140,7 +140,7 @@ contract MyEpicGame is ERC721 {
         abi.encodePacked(
         '{"name": "',
         charAttributes.name,
-        ' - NFT #: ',
+        ' - NFT #',
         Strings.toString(_tokenId),
         '", "description": "This is an NFT that lets people play in the game Vanilla Raiders!", "image": "',
         charAttributes.imageURI,
@@ -155,4 +155,17 @@ contract MyEpicGame is ERC721 {
     
     return output;
   }
+
+  function attackBoss() public {
+    // Get the state of the player's NFT.
+    uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
+    CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
+    console.log("\nPlayer w/ character %s about to attack. Has %s HP and %s AD", player.name, player.hp, player.attackDamage);
+    console.log("Boss %s has %s HP and %s AD", bigBoss.name, bigBoss.hp, bigBoss.attackDamage);
+    // Make sure the player has more than 0 HP.
+    // Make sure the boss has more than 0 HP.
+    // Allow player to attack boss.
+    // Allow boss to attack player.
+  }
+
 }
