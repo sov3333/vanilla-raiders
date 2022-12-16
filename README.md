@@ -76,3 +76,13 @@ npx hardhat run scripts/deploy.js --network goerli
 ```
 npx hardhat run scripts/run.js
 ```
+
+## Web App
+
+```
+npm install
+```
+
+```
+npm run start
+```
