@@ -8,6 +8,20 @@ const SelectCharacter = ({ setCharacterNFT }) => {
     const [characters, setCharacters] = useState([]);
     const [gameContract, setGameContract] = useState(null);
 
+    // Actions
+    const mintCharacterNFTAction = async (characterId) => {
+        try {
+            if (gameContract) {
+                console.log('Minting character in progress...');
+                const mintTxn = await gameContract.mintCharacterNFT(characterId);
+                await mintTxn.wait();
+                console.log('mintTxn:', mintTxn);
+            }
+        } catch (error) {
+            console.warn('MintCharacterAction Error:', error);
+        }
+    };
+
     // UseEffect
     useEffect(() => {
         const { ethereum } = window;
@@ -63,6 +77,45 @@ const SelectCharacter = ({ setCharacterNFT }) => {
         if (gameContract) {
           getCharacters();
         }
+
+        /*
+         * Add a callback method that will fire when this event is received
+         */
+        const onCharacterMint = async (sender, tokenId, characterIndex) => {
+            console.log(
+            `CharacterNFTMinted - sender: ${sender} tokenId: ${tokenId.toNumber()} characterIndex: ${characterIndex.toNumber()}`
+            );
+            alert(`Your NFT is all done -- see it here: https://testnets.opensea.io/assets/goerli/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`)
+
+
+            /*
+            * Once our character NFT is minted we can fetch the metadata from our contract
+            * and set it in state to move onto the Arena
+            */
+            if (gameContract) {
+                const characterNFT = await gameContract.checkIfUserHasNFT();
+                console.log('CharacterNFT: ', characterNFT);
+                setCharacterNFT(transformCharacterData(characterNFT));
+            }
+        };
+
+        if (gameContract) {
+            getCharacters();
+
+            /*
+            * Setup NFT Minted Listener
+            */
+            gameContract.on('CharacterNFTMinted', onCharacterMint);
+        }
+
+        return () => {
+            /*
+            * When your component unmounts, let's make sure to clean up this listener
+            */
+            if (gameContract) {
+            gameContract.off('CharacterNFTMinted', onCharacterMint);
+            }
+        };
     }, [gameContract]);
 
     // Render Methods
@@ -76,7 +129,7 @@ const SelectCharacter = ({ setCharacterNFT }) => {
         <button
         type="button"
         className="character-mint-button"
-        // onClick={()=> mintCharacterNFTAction(index)}
+        onClick={()=> mintCharacterNFTAction(index)}
         >{`Mint ${character.name}`}</button>
     </div>
     ));
