@@ -86,3 +86,13 @@ npm install
 ```
 npm run start
 ```
+
+## If new smart contract deployed, do this!
+
+So, what you'll need to do is:
+
+1. Deploy again using `npx hardhat run scripts/deploy.js --network goerli`
+
+2. Change `contractAddress` in `constants.js` to be the new contract address we got from the step above in the terminal (just like we did before the first time we deployed).
+
+3. Get the updated abi file from `artifacts` and copy-paste it into your web app just like we did above.
