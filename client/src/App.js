@@ -6,6 +6,7 @@ import { CONTRACT_ADDRESS, transformCharacterData } from './constants';
 import myEpicGame from './utils/MyEpicGame.json';
 import { ethers } from 'ethers';
 import Arena from './Components/Arena';
+import LoadingIndicator from './Components/LoadingIndicator';
 
 // Constants
 const TWITTER_HANDLE = '_buildspace';
@@ -18,11 +19,13 @@ const App = () => {
    */
   const [currentAccount, setCurrentAccount] = useState(null);
   const [characterNFT, setCharacterNFT] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   /*
    * This runs our function when the page loads.
    */
   useEffect(() => {
+    setIsLoading(true);
     checkIfWalletIsConnected();
   }, []);
 
@@ -56,13 +59,14 @@ const App = () => {
         signer
       );
 
-      const txn = await gameContract.checkIfUserHasNFT();
-      if (txn.name) {
+      const characterNFT = await gameContract.checkIfUserHasNFT();
+      if (characterNFT.name) {
         console.log('User has character NFT');
-        setCharacterNFT(transformCharacterData(txn));
+        setCharacterNFT(transformCharacterData(characterNFT));
       } else {
         console.log('No character NFT found');
       }
+      setIsLoading(true);
     };
 
     /*
@@ -87,6 +91,7 @@ const App = () => {
   
       if (!ethereum) {
         console.log('Make sure you have MetaMask!');
+        setIsLoading(false);
         return;
       } else {
         console.log('We have the ethereum object', ethereum);
@@ -110,10 +115,17 @@ const App = () => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   // Render Methods
   const renderContent = () => {
+    /*
+     * If the app is currently loading, just render out LoadingIndicator
+     */
+    if (isLoading) {
+      return <LoadingIndicator />;
+    }
     /*
      * Scenario #1: If user has has not connected to your app - Show Connect To Wallet Button
      */
