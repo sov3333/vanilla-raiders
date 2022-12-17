@@ -7,13 +7,28 @@ import './Arena.css';
 /*
  * We pass in our characterNFT metadata so we can show a cool card in our UI
  */
-const Arena = ({ characterNFT }) => {
+const Arena = ({ characterNFT, setCharacterNFT, currentAccount }) => {
   // State
   const [gameContract, setGameContract] = useState(null);
   const [boss, setBoss] = useState(null);
+  const [attackState, setAttackState] = useState('');
 
   // Actions
-  const runAttackAction = async () => {};
+  const runAttackAction = async () => {
+    try {
+      if (gameContract) {
+        setAttackState('attacking');
+        console.log('Attacking boss...');
+        const attackTxn = await gameContract.attackBoss();
+        await attackTxn.wait();
+        console.log('attackTxn:', attackTxn);
+        setAttackState('hit');
+      }
+    } catch (error) {
+      console.error('Error attacking boss:', error);
+      setAttackState('');
+    }
+  };
 
   // UseEffects
   useEffect(() => {
@@ -43,12 +58,54 @@ const Arena = ({ characterNFT }) => {
       console.log('Boss:', bossTxn);
       setBoss(transformCharacterData(bossTxn));
     };
+
+    /*
+     * Setup logic when this event is fired off 
+     */
+    const onAttackComplete = (from, newBossHp, newPlayerHp) => {
+        const bossHp = newBossHp.toNumber();
+        const playerHp = newPlayerHp.toNumber();
+        const sender = from.toString();
+
+        console.log(`AttackComplete: Boss Hp: ${bossHp} Player Hp: ${playerHp}`);
+
+        /*
+        * If player is our own, update both player and boss Hp
+        */
+        if (currentAccount === sender.toLowerCase()) {
+
+          setBoss((prevState) => {
+              return { ...prevState, hp: bossHp };
+          });
+          setCharacterNFT((prevState) => {
+              return { ...prevState, hp: playerHp };
+          });
+        }
+        /*
+        * If player isn't ours, update boss Hp only
+        */
+        else {
+          setBoss((prevState) => {
+              return { ...prevState, hp: bossHp };
+          });
+        }
+    }
   
     if (gameContract) {
       /*
        * gameContract is ready to go! Let's fetch our boss
        */
       fetchBoss();
+      gameContract.on('AttackComplete', onAttackComplete);
+    }
+
+    /*
+    * Make sure to clean up this event when this component is removed
+    */
+    return () => {
+        if (gameContract) {
+            gameContract.off('AttackComplete', onAttackComplete);
+        }
     }
   }, [gameContract]);
 
@@ -57,7 +114,7 @@ const Arena = ({ characterNFT }) => {
       {/* Replace your Boss UI with this */}
       {boss && (
         <div className="boss-container">
-          <div className={`boss-content`}>
+          <div className={`boss-content ${attackState}`}>
             <h2>🔥 {boss.name} 🔥</h2>
             <div className="image-content">
               <img src={boss.imageURI} alt={`Boss ${boss.name}`} />

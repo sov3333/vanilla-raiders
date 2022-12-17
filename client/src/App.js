@@ -139,7 +139,7 @@ const App = () => {
       return <SelectCharacter setCharacterNFT={setCharacterNFT} />;
     } else if (currentAccount && characterNFT) {
       // If there is a connected wallet and characterNFT, it's time to battle!
-      return <Arena characterNFT={characterNFT} />;
+      return <Arena characterNFT={characterNFT} setCharacterNFT={setCharacterNFT} currentAccount={currentAccount} />;
     }
   };
 
