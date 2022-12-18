@@ -66,7 +66,7 @@ const App = () => {
       } else {
         console.log('No character NFT found');
       }
-      setIsLoading(true);
+      setIsLoading(false);
     };
 
     /*
