@@ -9,7 +9,7 @@ import Arena from './Components/Arena';
 import LoadingIndicator from './Components/LoadingIndicator';
 
 // Constants
-const TWITTER_HANDLE = '_buildspace';
+const TWITTER_HANDLE = 'adv3nturers';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -188,7 +188,7 @@ const App = () => {
     <div className="App">
       <div className="container">
         <div className="header-container">
-          <p className="header gradient-text">⚔️ Metaverse Slayer ⚔️</p>
+          <p className="header gradient-text">⚔️ Vanilla Raiders ⚔️</p>
           <p className="sub-text">Team up to protect the Metaverse!</p>
           {renderContent()}
         </div>
@@ -199,7 +199,7 @@ const App = () => {
             href={TWITTER_LINK}
             target="_blank"
             rel="noreferrer"
-          >{`built with @${TWITTER_HANDLE}`}</a>
+          >{`built by @${TWITTER_HANDLE}`}</a>
         </div>
       </div>
     </div>
