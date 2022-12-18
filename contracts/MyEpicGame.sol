@@ -142,16 +142,19 @@ contract MyEpicGame is ERC721 {
     string memory strAttackDamage = Strings.toString(charAttributes.attackDamage);
 
     string memory json = Base64.encode(
+      bytes(
+        string(
         abi.encodePacked(
         '{"name": "',
         charAttributes.name,
         ' - NFT #',
         Strings.toString(_tokenId),
-        '", "description": "This is an NFT that lets people play in the game Vanilla Raiders!", "image": "',
+        '", "description": "This is an NFT that lets people play in the game Vanilla Raiders!", "image": "ipfs://',
         charAttributes.imageURI,
         '", "attributes": [ { "trait_type": "Health Points", "value": ',strHp,', "max_value":',strMaxHp,'}, { "trait_type": "Attack Damage", "value": ',
         strAttackDamage,'} ]}'
         )
+      ))
     );
 
     string memory output = string(

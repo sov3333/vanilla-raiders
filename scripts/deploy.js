@@ -2,13 +2,13 @@ const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
   const gameContract = await gameContractFactory.deploy(
     ["Swordsman", "Archer", "Wizard"],       // Names
-    ["https://i.imgur.com/neuxyy8.png", // Images
-    "https://i.imgur.com/z9Sj0xX.png", 
-    "https://i.imgur.com/JoFRNVw.png"],
+    ["Qmbb5q5Qv9cryxqvmvTzuKi2pMMFgyFSn4is95Lvkp7Cje/swordsman.png", // Images
+    "Qmbb5q5Qv9cryxqvmvTzuKi2pMMFgyFSn4is95Lvkp7Cje/archer.png", 
+    "Qmbb5q5Qv9cryxqvmvTzuKi2pMMFgyFSn4is95Lvkp7Cje/wizard.png"],
     [300, 200, 100], // HP values
     [30, 50, 100], // Attack damage values
     "Bearwhale", // Boss name
-    "https://i.imgur.com/4i20yVT.jpg", // Boss image
+    "QmVMvYLnhvx7dj5BidKUNovWfvoTkoCJgc4hV8w3zTEQtK", // Boss image
     10000, // Boss hp
     50 // Boss attack damage
   );
