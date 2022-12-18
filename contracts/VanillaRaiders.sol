@@ -187,24 +187,24 @@ contract VanillaRaiders is ERC721 {
     // Allow player to attack boss.
     if (bigBoss.hp < player.attackDamage) {
       bigBoss.hp = 0;
-    // } else {
-    //   bigBoss.hp = bigBoss.hp - player.attackDamage;
-    // }
     } else {
-      if (randomInt(10) > 5) {        // by passing 10 as the mod, we elect to only grab the last digit (0-9) of the hash!
-        bigBoss.hp = bigBoss.hp - player.attackDamage;
-        console.log("%s attacked boss. New boss hp: %s", player.name, bigBoss.hp);
-      } else {
-        console.log("%s missed!\n", player.name);
-      }
-    }    
+      bigBoss.hp = bigBoss.hp - player.attackDamage;
+    }
 
     // Allow boss to attack player.
     if (player.hp < bigBoss.attackDamage) {
       player.hp = 0;
+    // } else {
+    //   player.hp = player.hp - bigBoss.attackDamage;
+    // }
     } else {
-      player.hp = player.hp - bigBoss.attackDamage;
-    }
+      if (randomInt(10) > 7) {        // by passing 10 as the mod, we elect to only grab the last digit (0-9) of the hash!
+        player.hp = player.hp - bigBoss.attackDamage;
+        console.log("%s attacked player. New player hp: %s", bigBoss.name, player.hp);
+      } else {
+        console.log("%s missed!\n", bigBoss.name);
+      }
+    }    
     
     // Console for ease.
     console.log("Player attacked boss. New boss hp: %s", bigBoss.hp);
