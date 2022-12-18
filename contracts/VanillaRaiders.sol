@@ -147,7 +147,7 @@ contract VanillaRaiders is ERC721 {
         abi.encodePacked(
         '{"name": "',
         charAttributes.name,
-        ' - NFT #',
+        ' - Raider #',
         Strings.toString(_tokenId),
         '", "description": "This is an NFT that lets people play in the game Vanilla Raiders! Made by Adv3nture.xyz.", "image": "ipfs://',
         charAttributes.imageURI,
