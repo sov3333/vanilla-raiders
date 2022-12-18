@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './SelectCharacter.css';
 import { ethers } from 'ethers';
 import { CONTRACT_ADDRESS, transformCharacterData } from '../../constants';
-import myEpicGame from '../../utils/MyEpicGame.json';
+import VanillaRaiders from '../../utils/VanillaRaiders.json';
 import LoadingIndicator from "../../Components/LoadingIndicator";
 
 const SelectCharacter = ({ setCharacterNFT }) => {
@@ -36,7 +36,7 @@ const SelectCharacter = ({ setCharacterNFT }) => {
         const signer = provider.getSigner();
         const gameContract = new ethers.Contract(
             CONTRACT_ADDRESS,
-            myEpicGame.abi,
+            VanillaRaiders.abi,
             signer
         );
     

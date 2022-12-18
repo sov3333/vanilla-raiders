@@ -14,7 +14,7 @@ import "./libraries/Base64.sol";
 import "hardhat/console.sol";
 
 // Our contract inherits from ERC721, which is the standard NFT contract!
-contract MyEpicGame is ERC721 {
+contract VanillaRaiders is ERC721 {
 
   struct CharacterAttributes {
     uint characterIndex;
@@ -68,7 +68,7 @@ contract MyEpicGame is ERC721 {
     // This is the name and symbol for our token, ex Ethereum and ETH. I just call mine
     // Heroes and HERO. Remember, an NFT is just a token!
   )
-    ERC721("Heroes", "HERO")
+    ERC721("Vanilla Raiders", "RAIDERS")
   {
     // Initialize the boss. Save it to our global "bigBoss" state variable.
     bigBoss = BigBoss({
@@ -149,7 +149,7 @@ contract MyEpicGame is ERC721 {
         charAttributes.name,
         ' - NFT #',
         Strings.toString(_tokenId),
-        '", "description": "This is an NFT that lets people play in the game Vanilla Raiders!", "image": "ipfs://',
+        '", "description": "This is an NFT that lets people play in the game Vanilla Raiders! Made by Adv3nture.xyz.", "image": "ipfs://',
         charAttributes.imageURI,
         '", "attributes": [ { "trait_type": "Health Points", "value": ',strHp,', "max_value":',strMaxHp,'}, { "trait_type": "Attack Damage", "value": ',
         strAttackDamage,'} ]}'

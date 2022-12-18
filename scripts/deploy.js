@@ -1,5 +1,5 @@
 const main = async () => {
-  const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
+  const gameContractFactory = await hre.ethers.getContractFactory('VanillaRaiders');
   const gameContract = await gameContractFactory.deploy(
     ["Swordsman", "Archer", "Wizard"],       // Names
     ["Qmbb5q5Qv9cryxqvmvTzuKi2pMMFgyFSn4is95Lvkp7Cje/swordsman.png", // Images
