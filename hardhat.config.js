@@ -13,5 +13,10 @@ module.exports = {
       url: process.env.ALCHEMY_ARBI_API,
       accounts: [process.env.PRIVATE_KEY],
     },
+    arbitrumTestnet: {
+      chainId: 421613,
+      url: process.env.ALCHEMY_ARBI_TEST_API,
+      accounts: [process.env.PRIVATE_KEY],
+    },
   },
 };

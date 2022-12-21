@@ -2,9 +2,9 @@ const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory('VanillaRaiders');
   const gameContract = await gameContractFactory.deploy(
     ["Swordsman", "Archer", "Wizard"],       // Names
-    ["Qmbb5q5Qv9cryxqvmvTzuKi2pMMFgyFSn4is95Lvkp7Cje/swordsman.png", // Images
-    "Qmbb5q5Qv9cryxqvmvTzuKi2pMMFgyFSn4is95Lvkp7Cje/archer.png", 
-    "Qmbb5q5Qv9cryxqvmvTzuKi2pMMFgyFSn4is95Lvkp7Cje/wizard.png"],
+    ["QmRQLXwSLKqkE2p9ATum14jEVearEvku1QnB1qpdnD15rN/swordsman.png", // Images
+    "QmRQLXwSLKqkE2p9ATum14jEVearEvku1QnB1qpdnD15rN/archer.png", 
+    "QmRQLXwSLKqkE2p9ATum14jEVearEvku1QnB1qpdnD15rN/wizard.png"],
     [300, 200, 100], // HP values
     [30, 50, 100], // Attack damage values
     "Bearwhale", // Boss name
