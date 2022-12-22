@@ -127,3 +127,19 @@ etherscan: {
 ```
 npx hardhat verify --network arbitrumTestnet --constructor-args ./scripts/arguments.js 0x4174a2635Cd36C1730A1238d6eB0b6a4AA36f9aC
 ```
+
+
+## PUSH TO PRODUCTION
+
+1. Update network in `./client/src/App.js`.
+2. Update url to minted nft in `./client/src/SelectCharacter/index.js`.
+
+3. Use correct account key in `.env`
+
+4. To deploy, run `npx hardhat run scripts/deploy.js --network arbitrum`.
+
+5. Update ABI file copy from `./artifacts/contracts/VanillaRaiders.sol/VanillaRaiders.json` to `./client/src/utils/VanillaRaiders.json`.
+
+6. Update Contract address to `./client/src/constants.js`.
+
+7. To verify, run `npx hardhat verify --network arbitrum --constructor-args ./scripts/arguments.js 0x17db58eb9598F3c798700b9099961Da09ebbba0E`.

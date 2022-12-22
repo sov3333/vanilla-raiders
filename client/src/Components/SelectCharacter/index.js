@@ -90,7 +90,7 @@ const SelectCharacter = ({ setCharacterNFT }) => {
             console.log(
             `CharacterNFTMinted - sender: ${sender} tokenId: ${tokenId.toNumber()} characterIndex: ${characterIndex.toNumber()}`
             );
-            alert(`Your NFT is all done -- see it here: https://testnets.opensea.io/assets/arbitrum-goerli/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`)
+            alert(`Your NFT is all done -- see it here: https://opensea.io/assets/arbitrum/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`)
 
 
             /*

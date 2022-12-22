@@ -32,8 +32,8 @@ const App = () => {
   useEffect(() => {
     const checkNetwork = async () => {
       try { 
-        if (window.ethereum.networkVersion !== '5') {
-          alert("Please connect to Goerli!")
+        if (window.ethereum.networkVersion !== '42161') {
+          alert("Please connect to Arbitrum One!")
         }
       } catch(error) {
         console.log(error)
