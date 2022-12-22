@@ -133,8 +133,8 @@ const App = () => {
       return (
         <div className="connect-wallet-container">
           <img
-            src="https://64.media.tumblr.com/tumblr_mbia5vdmRd1r1mkubo1_500.gifv"
-            alt="Monty Python Gif"
+            src="https://i.imgur.com/gOftJFs.png"
+            alt="Vanilla Raiders by Adventurers"
           />
           <button
             className="cta-button connect-wallet-button"

@@ -5,12 +5,12 @@ const main = async () => {
     ["QmRQLXwSLKqkE2p9ATum14jEVearEvku1QnB1qpdnD15rN/swordsman.png", // Images
     "QmRQLXwSLKqkE2p9ATum14jEVearEvku1QnB1qpdnD15rN/archer.png", 
     "QmRQLXwSLKqkE2p9ATum14jEVearEvku1QnB1qpdnD15rN/wizard.png"],
-    [300, 200, 100], // HP values
-    [30, 50, 100], // Attack damage values
+    [1000, 700, 500], // HP values
+    [75, 100, 150], // Attack damage values
     "Bearwhale", // Boss name
     "QmVMvYLnhvx7dj5BidKUNovWfvoTkoCJgc4hV8w3zTEQtK", // Boss image
-    10000, // Boss hp
-    50 // Boss attack damage
+    100000, // Boss hp
+    100 // Boss attack damage
   );
   await gameContract.deployed();
   console.log("Contract deployed to:", gameContract.address);
