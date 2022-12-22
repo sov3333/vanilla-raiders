@@ -96,3 +96,34 @@ So, what you'll need to do is:
 2. Change `contractAddress` in `constants.js` to be the new contract address we got from the step above in the terminal (just like we did before the first time we deployed).
 
 3. Get the updated abi file from `artifacts` and copy-paste it into your web app just like we did above.
+
+
+## Verify on Etherscan
+
+- https://hardhat.org/hardhat-runner/plugins/nomiclabs-hardhat-etherscan
+
+1. Install 
+```
+npm install --save-dev @nomiclabs/hardhat-etherscan
+```
+
+2. Add to hardhat.config.js:
+```
+require("@nomiclabs/hardhat-etherscan");
+
+...
+
+networks: {
+    ...
+},
+etherscan: {
+    apiKey: "YOUR_ETHERSCAN_API_KEY"
+}
+```
+
+3. Create `arguments.js` for complex arguments.
+
+4. Verify
+```
+npx hardhat verify --network arbitrumTestnet --constructor-args ./scripts/arguments.js 0x4174a2635Cd36C1730A1238d6eB0b6a4AA36f9aC
+```
